@@ -30,7 +30,15 @@ export class AppComponent implements OnInit{
       (value) => {
         console.log(value)
       }
-    )
+    ),
+    this.signupForm.setValue({
+      'userData': {
+        'username': 'beata',
+        'email': 'beata@test.com'
+      },
+      'gender': 'female',
+      'hobbies': []
+    })
   }
 
   onSubmit() {
