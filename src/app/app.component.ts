@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.signupForm = new FormGroup({
        'userData': new FormGroup({
-        'username': new FormControl(null, Validators.required),
+        'username': new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
         'email': new FormControl(null, [Validators.required, Validators.email]),
       }),
       'gender': new FormControl('female'),
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit{
   }
 
   forbiddenNames(control: FormControl): {[s: string]: boolean} {
-    if(this.forbiddenUserName.indexOf(control.value)) {
+    if(this.forbiddenUserName.indexOf(control.value) !== -1) {
       return {'nameIsForbidden': true}
     }
     return null;
